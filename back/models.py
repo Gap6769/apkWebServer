@@ -24,6 +24,7 @@ from django.db.models import (
 
 
 class apkPayload(models.Model):
+
     apk_name = models.CharField(max_length=100, default="", blank=True)
     port = models.PositiveSmallIntegerField(default=0)
 
@@ -37,7 +38,7 @@ class apkPayload(models.Model):
     @property
     def download(self):
         """Returns a Code Calculated from de kind and max weekly hours"""
-        return f"http://localhost:8000/back/meterpreter_payload_views/get_apk_file/"
+        return f"http://localhost:8000/back/meterpreter_payload_views/get_apk_file/{self.apk_name}"
 
 
 class Messages(models.Model):
@@ -46,7 +47,7 @@ class Messages(models.Model):
     ip = models.GenericIPAddressField()
 
 
-class Dump_sms(models.Model):
+class dump_sms(models.Model):
     sms_type = models.CharField(max_length=100, default="", blank=True)
     phone_number = models.CharField(max_length=100, default="", blank=True)
     date = models.DateTimeField(auto_now_add=False)
