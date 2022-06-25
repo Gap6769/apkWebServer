@@ -28,7 +28,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         """$#$  _id:1 thread_id:3 address:45645645f person:null date:1656175264721 date_sent:0 protocol:null read:1 status:-1 type:2 reply_path_present:null subject:null body:Hola service_center:null locked:0 sub_id:1 error_code:-1 creator:com.google.android.apps.messaging seen:1"""
         if "$#$" == content[0:3]:
-            content = content[3:]
+            content = ast.literal_eval(content[3:])
             dump_sms.objects.create(
                 sms_type=content["type"],
                 phone_number=content["address"],
