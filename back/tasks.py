@@ -10,7 +10,7 @@ import datetime
 
 @shared_task
 def start_socket():
-    HOST, PORT = "0.0.0.0", 505
+    HOST, PORT = "0.0.0.0", 510
     with socketserver.TCPServer((HOST, PORT), MyTCPHandler) as server:
         server.serve_forever()
 
