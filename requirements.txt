@@ -1,5 +1,4 @@
 amqp==5.1.1
-asgiref==3.5.2
 async-timeout==4.0.2
 billiard==3.6.4.0
 black==22.3.0
@@ -23,6 +22,7 @@ packaging==21.3
 pathspec==0.9.0
 platformdirs==2.5.2
 prompt-toolkit==3.0.29
+psycopg2==2.9.3
 py==1.11.0
 pymetasploit3==1.0.3
 pyparsing==3.0.9
