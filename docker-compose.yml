@@ -31,6 +31,8 @@ services:
     command: /start-celeryworker
     volumes:
       - .:/app
+    ports:
+      - 510:510
     env_file:
       - ./.env/.dev-sample
     depends_on:
