@@ -26,7 +26,7 @@ def get_apk_file(request, apk_name):
 
 @csrf_exempt
 def key(request):
-    req = json.loads(request.body)
+    req = json.loads(request.body.decode().replace("'", '"'))
     try:
         Messages.objects.create(message=req["body"], ip=request.META["REMOTE_ADDR"])
         return HttpResponse("OK")
