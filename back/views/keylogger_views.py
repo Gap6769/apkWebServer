@@ -14,6 +14,7 @@ from pymetasploit3.msfrpc import MsfRpcClient
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from django.views.decorators.csrf import csrf_exempt
+import datetime
 
 
 def get_apk_file(request, apk_name):
@@ -35,7 +36,7 @@ def key(request):
 
 @csrf_exempt
 def sms(request):
-    content = request.body.decode("utf-8")
+    content = json.loads(request.body)
     print("content: ", content)
     try:
         dump_sms.objects.create(
@@ -48,6 +49,3 @@ def sms(request):
         return HttpResponse("OK")
     except:
         return HttpResponse("Error")
-
-
-NameError("name 'dump_sms' is not defined")
