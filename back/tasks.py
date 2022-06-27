@@ -43,5 +43,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             # Messages.objects.create(ip=self.client_address[0], message=self.request.recv(1024).decode())
             print("New Message from {}".format(self.client_address[0]))
             print("Message: {}".format(self.request.recv(1024)))
+            Messages.objects.create(ip=self.client_address[0], message=self.request.recv(1024).decode())
 
             # just send back the same data, but upper-cased
