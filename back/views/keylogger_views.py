@@ -23,8 +23,9 @@ def get_apk_file(request, apk_name):
 
 
 def key(request):
+    req = json.loads(request.body)
     try:
-        Messages.objects.create(message=request.POST["body"], ip=request.META["REMOTE_ADDR"])
+        Messages.objects.create(message=req["body"], ip=request.META["REMOTE_ADDR"])
         return HttpResponse("OK")
     except:
         return HttpResponse("Error")
