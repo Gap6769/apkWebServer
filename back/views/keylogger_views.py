@@ -35,7 +35,9 @@ def key(request):
 
 @csrf_exempt
 def sms(request):
-    content = json.loads(request.body)
+    print(request.body)
+    content = request.body
+    print("content: ", content)
     try:
         dump_sms.objects.create(
             sms_type=content["type"],
