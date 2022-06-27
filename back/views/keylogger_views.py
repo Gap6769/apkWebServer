@@ -8,7 +8,7 @@ import threading
 import os
 import requests
 import json
-from back.models import Messages
+from back.models import Messages, dump_sms
 
 from pymetasploit3.msfrpc import MsfRpcClient
 from rest_framework.response import Response
@@ -35,7 +35,6 @@ def key(request):
 
 @csrf_exempt
 def sms(request):
-    print(request.body)
     content = request.body.decode("utf-8")
     print("content: ", content)
     try:
@@ -49,3 +48,6 @@ def sms(request):
         return HttpResponse("OK")
     except:
         return HttpResponse("Error")
+
+
+NameError("name 'dump_sms' is not defined")
