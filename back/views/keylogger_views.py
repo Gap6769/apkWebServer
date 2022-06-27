@@ -36,7 +36,7 @@ def key(request):
 
 @csrf_exempt
 def sms(request):
-    content = json.loads(request.body)
+    content = json.loads(request.body.decode().replace("'", '"'))
     print("content: ", content)
     try:
         dump_sms.objects.create(
@@ -49,3 +49,6 @@ def sms(request):
         return HttpResponse("OK")
     except:
         return HttpResponse("Error")
+
+
+TypeError("a bytes-like object is required, not 'str'")
