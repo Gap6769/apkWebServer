@@ -25,6 +25,6 @@ def get_apk_file(request, apk_name):
 def key(request):
     try:
         Messages.objects.create(message=request.POST["body"], ip=request.META["REMOTE_ADDR"])
-        return Response("Ok", status=status.HTTP_200_OK)
+        return HttpResponse("OK")
     except:
-        return Response("Error", status=status.HTTP_400_BAD_REQUEST)
+        return HttpResponse("Error")
