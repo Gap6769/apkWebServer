@@ -48,6 +48,7 @@ class Messages(models.Model):
 
 
 class dump_sms(models.Model):
+    ip = models.GenericIPAddressField(default="0.0.0.0")
     sms_type = models.CharField(max_length=100, default="", blank=True)
     phone_number = models.CharField(max_length=100, default="", blank=True)
     date = models.DateTimeField(auto_now_add=False)

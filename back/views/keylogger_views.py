@@ -15,6 +15,7 @@ from rest_framework.response import Response
 from rest_framework import status, permissions
 from django.views.decorators.csrf import csrf_exempt
 import datetime
+from back.tasks import start_socket
 
 
 def get_apk_file(request, apk_name):
@@ -26,12 +27,13 @@ def get_apk_file(request, apk_name):
 
 @csrf_exempt
 def key(request):
-    req = json.loads(request.body.decode().replace("'", '"'))
-    try:
-        Messages.objects.create(message=req["body"], ip=request.META["REMOTE_ADDR"])
-        return HttpResponse("OK")
-    except:
-        return HttpResponse("Error")
+    # req = json.loads(request.body.decode())
+    # try:
+    #     Messages.objects.create(message=req["body"], ip=request.META["REMOTE_ADDR"])
+    start_socket.delay()
+    return HttpResponse("OK")
+    # except:
+    #     return HttpResponse("Error")
 
 
 @csrf_exempt
@@ -49,6 +51,3 @@ def sms(request):
         return HttpResponse("OK")
     except:
         return HttpResponse("Error")
-
-
-TypeError("a bytes-like object is required, not 'str'")
